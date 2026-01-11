@@ -1,6 +1,14 @@
 import React from 'react'
 
 const SoundSection = () => {
+
+  const handleLearnMore = () => {
+  document
+    .querySelector(".display-section")
+    ?.scrollIntoView({ behavior: "smooth", block: "end" });
+};
+
+
   return (
     <div className='sound-section wrapper'>
       <div className='body'>
@@ -13,7 +21,7 @@ const SoundSection = () => {
               <button className='button'>Buy</button>
             </li>
             <li>
-              <a className='link'>Learn more</a>
+              <a onClick={handleLearnMore} className='link'>Learn more</a>
             </li>
           </ul>
         </div>
