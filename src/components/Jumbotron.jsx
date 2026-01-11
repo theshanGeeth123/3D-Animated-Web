@@ -1,5 +1,5 @@
 import React from 'react'
-import iphone from '../assets/images/iphone-14.jpg'
+import iphone from '../assets/images/logo2.png'
 import HoldingIphone from '../assets/images/iphone-hand.png'
 
 
@@ -19,13 +19,11 @@ const JumboTron = () => {
   return (
     <div className='jumbotron-section wrapper'>
 
-        <h2 className='title'>New</h2>
+        <h2 className='title'></h2>
         <img  className='logo' src={iphone}/>
-        <p className='text'>Big and bigger.</p>
+        <p className='text'>Toyota AE86</p>
 
-        <span className='description'>
-            From $41.62/mo. for 24 mo. or $999 before trade-in
-        </span>
+        
 
         <ul className='links'>
             <li>
@@ -35,7 +33,6 @@ const JumboTron = () => {
                 <a className='link' onClick={handleLearnMore}>Learn More</a>
             </li>
         </ul>
-        <img className='iphone-img' src={HoldingIphone}/>
     </div>
   )
 }

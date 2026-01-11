@@ -13,9 +13,9 @@ const SoundSection = () => {
     <div className='sound-section wrapper'>
       <div className='body'>
         <div className='sound-section-content content'>
-          <h2 className='title'>New Sound System</h2>
-          <p className='text'>Feel the base</p>
-          <span className='description'>From $41.62 per month for 24 months, or $999 before trade‑in.</span>
+          <h2 className='title'>Key Specifications</h2>
+          <p className='text'>(GT-S Model)</p>
+          <span className='description'>Engine: 1.6L (1587cc) 4A-GEC DOHC 16-valve Inline-4</span>
           <ul className='links'>
             <li>
               <button className='button'>Buy</button>

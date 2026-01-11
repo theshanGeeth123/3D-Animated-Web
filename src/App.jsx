@@ -4,6 +4,7 @@ import SoundSection from "./components/SoundSection";
 import DisplaySection from "./components/DisplaySection";
 import WebgiViewer from "./components/WebgiViewer";
 import { useRef } from "react";
+import Loader from "./components/Loader";
 
 function App() {
 
@@ -17,6 +18,8 @@ function App() {
 
   return (
     <div className="App">
+
+      <Loader />
 
       <div ref={contentRef} id="content">
         <Nav />

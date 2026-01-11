@@ -12,15 +12,14 @@ function DisplaySection({ triggerPreview }) {
 
     return (
         <div className="display-section wrapper">
-            <h2 className="title">New</h2>
-            <p className="text">Brilliant.</p>
+            <p className="text">Toyota AE86</p>
             <span className="description">
-                A display that's up to 2x brighter in the sun.
+                “Hachi-Roku” (ハチロク)
             </span>
 
             <button className="button"
                 onClick={triggerPreview}
-            >Try me!</button>
+            >Try Model</button>
 
             <button
                 className="back-button"

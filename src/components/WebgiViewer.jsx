@@ -108,7 +108,7 @@ const WebgiViewer = forwardRef((props, ref) => {
         // This must be called once after all plugins are added.
         viewer.renderer.refreshPipeline();
 
-        await manager.addFromPath("scene-black.glb");
+        await manager.addFromPath("car.glb");
 
         viewer.getPlugin(TonemapPlugin).config.clipBackground = true
 
@@ -177,7 +177,7 @@ const WebgiViewer = forwardRef((props, ref) => {
         gsap.to(targetRef, {
             x:!isMobile? -0.55:-1.62,
             y: !isMobile?0.32:0.02,
-            z: !isMobile?0.0:-0.06,
+            z: !isMobile?0.0:-0.0,
             scrollTrigger: {
                 trigger: '.display-section',
                 start: "top bottom",
