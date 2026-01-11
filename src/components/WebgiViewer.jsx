@@ -20,18 +20,47 @@ import { scrollAnimation } from '../lib/scroll-animation.js'
 
 gsap.registerPlugin(ScrollTrigger);
 
-function WebgiViewer() {
+const WebgiViewer = forwardRef((props, ref) => {
 
     const convasRef = useRef(null);
+    const [viewerRef, setViewerRef] = useState(null);
+    const [targetRef, setTargetRef] = useState(null);
+    const [cameraRef, setCameraRef] = useState(null);
+    const [positionRef, setPositionRef] = useState(null);
+    const canvasContainerRef = useRef(null);
+
+    useImperativeHandle(ref, () => ({
+        triggerPreview() {
+
+            canvasContainerRef.current.style.pointerEvents = "all";
+
+            props.contentRef.current.style.opacity ="0";
+
+            gsap.to(positionRef, {
+                x: 13.04,
+                y: -2.01,
+                z: 2.29,
+                duration: 2,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            });
+
+            gsap.to(targetRef, { x: 0.11, y: 0.0, z: 0.0, duration: 2 });
+
+            viewerRef.scene.activeCamera.setCameraOptions({controlsEnabled:true});
+        }
+    }));
 
     const memorizeScrollAnimation = useCallback(
-        (position,target,onUpdate) => {
+        (position, target, onUpdate) => {
 
-            if(position && target && onUpdate){
-                scrollAnimation(position,target,onUpdate);
+            if (position && target && onUpdate) {
+                scrollAnimation(position, target, onUpdate);
             }
 
-        },[]
+        }, []
     )
 
     const setupViewer = useCallback(async () => {
@@ -40,6 +69,8 @@ function WebgiViewer() {
             canvas: convasRef.current,
         })
 
+        setViewerRef(viewer);
+
         const manager = await viewer.addPlugin(AssetManagerPlugin)
 
         const camera = viewer.scene.activeCamera;
@@ -47,6 +78,12 @@ function WebgiViewer() {
         const position = camera.position;
 
         const target = camera.target;
+
+        setCameraRef(camera);
+
+        setPositionRef(position);
+
+        setTargetRef(target);
 
         // Add plugins individually.
         await viewer.addPlugin(GBufferPlugin)
@@ -83,7 +120,7 @@ function WebgiViewer() {
 
             needsUpdate = true;
             viewer.setDirty();
-            
+
         }
 
         viewer.addEventListener("preFrame", () => {
@@ -96,7 +133,7 @@ function WebgiViewer() {
 
         })
 
-        memorizeScrollAnimation(position,target,onUpdate);
+        memorizeScrollAnimation(position, target, onUpdate);
 
     }, [])
 
@@ -105,10 +142,10 @@ function WebgiViewer() {
     }, [])
 
     return (
-        <div id='webgi-canvas-container'>
+        <div ref={canvasContainerRef} id='webgi-canvas-container'>
             <canvas id='webgi-canvas' ref={convasRef} />
         </div>
     )
-}
+})
 
 export default WebgiViewer
